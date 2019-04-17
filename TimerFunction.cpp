@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 char printdata[100];
 void AutoMining(Data &Player)
 {
@@ -26,53 +26,53 @@ void AutoCharge(Data &Player)
 			Player.currentSP += 2;
 			if (Player.currentSP >= Player.maxSP) Player.currentSP = Player.maxSP;
 			Player.timeCount = 60 + 2 * Player.clearRockCount;
-			strcpy(printdata, "SP¸¦ È¸º¹Çß´Ù!");
+			strcpy(printdata, "SPë¥¼ íšŒë³µí–ˆë‹¤!");
 			newQ(printdata, Player);
 		}
 	}
 }
 
 void cpsCheck(int &cps, HWND hWnd)
-{
-	if (cps >= 30) MessageBox(hWnd, "´ç½ÅÀÇ ÄÄÇ»ÅÍ¿¡ ÃÊ´ç 30ÃÊ ÀÌ»ó Å¬¸¯µÇ´Â ¹ÙÀÌ·¯½º°¡ ÀÖ½À´Ï´Ù!", "Warning!", MB_OK | MB_ICONHAND);
+{ // 1ì´ˆë§ˆë‹¤ í´ë¦­ íšŸìˆ˜ ê²€ì‚¬
+	if (cps >= 30) MessageBox(hWnd, "ë‹¹ì‹ ì˜ ì»´í“¨í„°ì— ì´ˆë‹¹ 30ì´ˆ ì´ìƒ í´ë¦­ë˜ëŠ” ë°”ì´ëŸ¬ìŠ¤ê°€ ìˆìŠµë‹ˆë‹¤!", "Warning!", MB_OK | MB_ICONHAND);
 	cps = 0;
 }
 
 void HPCheck(Data &Player, Gem *Jewel)
 {
-	if (Player.rockHP <= Player.MaxrockHP / 3) Player.displayRock01 = 1;
-	if (Player.rockHP <= (Player.MaxrockHP / 3) * 2) Player.displayRock02 = 1;
-	if (Player.rockHP <= 0) {
+	if (Player.rockHP <= Player.MaxrockHP / 3) Player.displayRock01 = 1; // 1/3 ì™„ë£Œì‹œ
+	if (Player.rockHP <= (Player.MaxrockHP / 3) * 2) Player.displayRock02 = 1; // 2/3 ì™„ë£Œì‹œ
+	if (Player.rockHP <= 0) { // ëª¨ë‘ ì™„ë£Œì‹œ
 		static int getGold;
 		char gold_[10];
-		getGold = ((1 + rand() % 7) * 10);
+		getGold = ((1 + rand() % 7) * 10); // ê³¨ë“œ ëœë¤ íšë“
 		Player.displayRock01 = 0;
 		Player.displayRock02 = 0;
 		Player.clearRockCount++;
 		Player.currentSP--;
 		Player.amountGold += getGold;
-		Player.MaxrockHP = 50 + 30 * Player.clearRockCount * 0.3;
+		Player.MaxrockHP = 30 + 9 * Player.clearRockCount; // ë¶€ìˆœ ëŒ ê°¯ìˆ˜ì— ë¹„ë¡€í•˜ì—¬ ì²´ë ¥ ì¦ê°€
 		Player.rockHP = Player.MaxrockHP;
 
 		itoa(getGold, gold_, 10);
 		strcpy(printdata, gold_);
-		strcat(printdata, " °ñµå¸¦ È¹µæÇß´Ù!");
+		strcat(printdata, " ê³¨ë“œë¥¼ íšë“í–ˆë‹¤!");
 		newQ(printdata, Player);
 
 		switch (1 + rand() % 100) {
 		case 1: case 2: case 3: case 4:
 			Jewel[0].amountGem++;
-			strcpy(printdata, "ºñÅ¸¹Î ¾¾µ¹À» È¹µæÇß´Ù!");
+			strcpy(printdata, "ë¹„íƒ€ë¯¼ ì”¨ëŒì„ íšë“í–ˆë‹¤!");
 			newQ(printdata, Player);
 			break;
 		case 5: case 6: case 7: case 8:
 			Jewel[1].amountGem++;
-			strcpy(printdata, "¼Øº¸¶ó¸¦ È¹µæÇß´Ù!");
+			strcpy(printdata, "ì†œë³´ë¼ë¥¼ íšë“í–ˆë‹¤!");
 			newQ(printdata, Player);
 			break;
 		case 9: case 10: case 11: case 12:
 			Jewel[2].amountGem++;
-			strcpy(printdata, "¸¶Á¨Å¸ÀÇ ´«¹°À» È¹µæÇß´Ù!");
+			strcpy(printdata, "ë§ˆì  íƒ€ì˜ ëˆˆë¬¼ì„ íšë“í–ˆë‹¤!");
 			newQ(printdata, Player);
 			break;
 		}

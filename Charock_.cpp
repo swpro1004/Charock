@@ -3,7 +3,7 @@
 
 HINSTANCE g_hInst;
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
-char* lpszClass = "Ä³¶ô Ä³¶ô Ã¼ÀÎÁö";
+char* lpszClass = "ìºë½ ìºë½ ì²´ì¸ì§€";
 POINT cs;
 WNDCLASS WndClass;
 static Data Player;
@@ -32,6 +32,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
 	hWnd = CreateWindow(lpszClass, lpszClass, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1571, 1039, NULL, (HMENU)NULL, hInstance, NULL);
 	ShowWindow(hWnd, nCmdShow);
 
+	// í°íŠ¸ ë“±ë¡
 	GetCurrentDirectory(MAX_PATH, fontDirectory);
 	strcat(fontDirectory, "\\Fonts\\10X10.ttf");
 	AddFontResource(fontDirectory);
@@ -56,12 +57,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 		if (!loadData(Player, Jewel)) {
 			Player = { 2, 1, 5, 0, 50, 50, 0, 0, 20, 20, 0, 0, 0, 0, 60,{ 0, },{ " ", }, 0, 0 };
-			Jewel[0] = { "ºñÅ¸¹Î ¾¾µ¹", 0, 0 };
-			Jewel[1] = { "ÆÄ¶õµ¹ÀÌ¾Æ", 0, 0 };
-			Jewel[2] = { "ÀûÇ÷±¸ µ¹", 0, 0 };
-			Jewel[3] = { "Çª¸¥ ºû »ï°ãµ¹", 0, 0 };
-			Jewel[4] = { "¹«Áö °³°°Àº µ¹", 0, 0 };
+			Jewel[0] = { "ë¹„íƒ€ë¯¼ ì”¨ëŒ", 0, 0 };
+			Jewel[1] = { "íŒŒëž€ëŒì´ì•„", 0, 0 };
+			Jewel[2] = { "ì í˜ˆêµ¬ ëŒ", 0, 0 };
+			Jewel[3] = { "í‘¸ë¥¸ ë¹› ì‚¼ê²¹ëŒ", 0, 0 };
+			Jewel[4] = { "ë¬´ì§€ ê°œê°™ì€ ëŒ", 0, 0 };
 		}
+		// íƒ€ì´ë¨¸ ì´ë²¤íŠ¸ ì„¤ì •
 		hTimer1 = timeSetEvent(1000, 100, (LPTIMECALLBACK)TimerProc, 1, TIME_PERIODIC);
 		hTimer2 = timeSetEvent(1000, 100, (LPTIMECALLBACK)TimerProc, 2, TIME_PERIODIC);
 		hTimer3 = timeSetEvent(5, 100, (LPTIMECALLBACK)TimerProc, 3, TIME_PERIODIC);
@@ -70,7 +72,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_COMMAND:
 	{
 		int wmId = LOWORD(wParam);
-		// ¸Þ´º ¼±ÅÃÀ» ±¸¹® ºÐ¼®ÇÕ´Ï´Ù.
 		switch (wmId)
 		{
 		case IDM_ABOUT:
@@ -85,7 +86,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		DrawMain(hwnd, Player, g_hInst, Jewel);
 		break;
 
-	case WM_MOUSEMOVE:
+	case WM_MOUSEMOVE: // ì»¤ì„œ ìœ„ì¹˜ í™•ì¸ í›„ ìœ„ì¹˜ì— ë§žê²Œ ì»¤ì„œ ëª¨ì–‘ ë³€ê²½
 		cs = { LOWORD(lParam), HIWORD(lParam) };
 		Player.Clicked_2nd = Click(cs, Player, hwnd, lParam);
 		switch (Where(cs, Player, hwnd, lParam)) {
@@ -98,7 +99,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 
-	case WM_GETMINMAXINFO:
+	case WM_GETMINMAXINFO: // ê²Œìž„í™”ë©´ í¬ê¸° ê³ ì •
 		((MINMAXINFO*)lParam)->ptMaxTrackSize.x = 1571;
 		((MINMAXINFO*)lParam)->ptMaxTrackSize.y = 1039;
 		((MINMAXINFO*)lParam)->ptMinTrackSize.x = 1571;

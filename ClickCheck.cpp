@@ -1,8 +1,8 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 char printdata_[100];
 bool Dig_Check(POINT cs, Data &Player, HWND hWnd, LPARAM lParam, int &cps, Gem *Jewel){
-	if (cs.x >= 75 && cs.x <= 425 && cs.y >= 275 && cs.y <= 625) {
-		if (Player.currentSP > 0) {
+	if (cs.x >= 75 && cs.x <= 425 && cs.y >= 275 && cs.y <= 625) { // ì»¤ì„œ ìœ„ì¹˜ í™•ì¸
+		if (Player.currentSP > 0) { // SPê°€ ìˆë‹¤ë©´ 
 			Player.rockHP--;
 			HPCheck(Player, Jewel);
 		}
@@ -60,7 +60,7 @@ void Click_Slot(POINT cs, Data &Player, HWND hWnd, LPARAM lParam, Gem *Jewel)
 			Jewel[1].gemExp = 0;
 			Jewel[2].gemExp = 0;
 			Jewel[3].amountGem++;
-			strcpy(printdata_, "Çª¸¥ ºû »ğ°ãµ¹À» È¹µæÇß´Ù!");
+			strcpy(printdata_, "í‘¸ë¥¸ ë¹› ì‚½ê²¹ëŒì„ íšë“í–ˆë‹¤!");
 			newQ(printdata_, Player);
 		}
 	}
@@ -69,7 +69,7 @@ void Click_Slot(POINT cs, Data &Player, HWND hWnd, LPARAM lParam, Gem *Jewel)
 			Jewel[3].gemExp = 0;
 			Jewel[3].amountGem--;
 			Jewel[4].amountGem++;
-			strcpy(printdata_, "¹«Áö °³°°Àº µ¹À» È¹µæÇß´Ù!");
+			strcpy(printdata_, "ë¬´ì§€ ê°œê°™ì€ ëŒì„ íšë“í–ˆë‹¤!");
 			newQ(printdata_, Player);
 		}
 	}
@@ -83,7 +83,7 @@ void Shop(POINT cs, Data &Player, HWND hwnd, LPARAM lParam, UINT &hTimer1){
 				Player.amountGold -= 150;
 				Player.displayPickaxe[Player.amountP1 + Player.amountP2] = 1;
 				Player.amountP1++;
-				strcpy(printdata_, "Àßµå´Â µ¹ °î±ªÀÌ¸¦ È¹µæÇß´Ù!");
+				strcpy(printdata_, "ì˜ë“œëŠ” ëŒ ê³¡ê´­ì´ë¥¼ íšë“í–ˆë‹¤!");
 				newQ(printdata_, Player);
 			}
 		}
@@ -94,7 +94,7 @@ void Shop(POINT cs, Data &Player, HWND hwnd, LPARAM lParam, UINT &hTimer1){
 				Player.amountGold -= 200;
 				Player.displayPickaxe[Player.amountP1 + Player.amountP2] = 2;
 				Player.amountP2++;
-				strcpy(printdata_, "Â¼´Â Ã¶ °î±ªÀÌ¸¦ È¹µæÇß´Ù!");
+				strcpy(printdata_, "ì©ŒëŠ” ì²  ê³¡ê´­ì´ë¥¼ íšë“í–ˆë‹¤!");
 				newQ(printdata_, Player);
 			}
 		}
@@ -104,7 +104,7 @@ void Shop(POINT cs, Data &Player, HWND hwnd, LPARAM lParam, UINT &hTimer1){
 				Player.amountGold -= 200;
 				Player.amountP2++;
 				Player.amountP1--;
-				strcpy(printdata_, "Â¼´Â Ã¶ °î±ªÀÌ¸¦ È¹µæÇß´Ù!");
+				strcpy(printdata_, "ì©ŒëŠ” ì²  ê³¡ê´­ì´ë¥¼ íšë“í–ˆë‹¤!");
 				newQ(printdata_, Player);
 				isChanged = TRUE;
 				for (int i = 0; isChanged; i++) {
@@ -125,7 +125,7 @@ void Shop(POINT cs, Data &Player, HWND hwnd, LPARAM lParam, UINT &hTimer1){
 					Player.currentSP = Player.maxSP;
 					Player.timeCount = 60 + 2 * Player.clearRockCount;
 				}
-				strcpy(printdata_, "±â¿îÆŞÆŞ ¹ø°³¹°¾àÀ» È¹µæÇß´Ù!");
+				strcpy(printdata_, "ê¸°ìš´í„í„ ë²ˆê°œë¬¼ì•½ì„ íšë“í–ˆë‹¤!");
 				newQ(printdata_, Player);
 			}
 		}

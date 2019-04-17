@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 
 static RECT rcClient;
 static HDC hdc, hdc_;
@@ -15,7 +15,7 @@ RECT BG2_2 = { 1988, 0, 509, 1000 }; //
 RECT BG3_1 = { 2497, 0, 549, 1000 }; //
 RECT BG3_2 = { 3046, 0, 549, 1000 }; //
 
-void DrawMain(HWND hWnd, Data Player, HINSTANCE hInst, Gem Jewel[])
+void DrawMain(HWND hWnd, Data Player, HINSTANCE hInst, Gem Jewel[]) // 판 생성 - 배경 - 클리커 파트 - 상점 파트 - 보석장 파트 - 곡괭이 순으로 출력
 {
 	hdc_ = BeginPaint(hWnd, &ps);
 	GetClientRect(hWnd, &rcClient);
@@ -126,7 +126,7 @@ void Draw2ndPhase(Data Player, HINSTANCE hInst, Gem Jewel[]) {
 		SetBkMode(hdc, TRANSPARENT);
 		RECT NOTICE = { 580, 707, 930, 765 };
 
-		DrawText(hdc, "���ݱ��� ���� ������ ����!", -1, &NOTICE, DT_CENTER);
+		DrawText(hdc, "지금까지 모은 보석의 갯수!", -1, &NOTICE, DT_CENTER);
 		char amountGem[5][3];
 		for (int i = 0; i < 5; i++) itoa(Jewel[i].amountGem, amountGem[i], 10);
 
